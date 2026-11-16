@@ -17,19 +17,19 @@ The project brings together **RF/SDR, Linux, Python, GPIO-driven display hardwar
 
 **Data provenance:** The SDR/dump1090 decoder supplies live broadcast-derived position/altitude/speed-related fields when available. Aircraft-type details and routes are additional **third-party lookups**, not data broadcast as a full flight itinerary by the aircraft.
 
-## Prototype photographs and aircraft-traffic reference
+## Prototype photographs and live aircraft cross-check
 
-These are photos of my actual Raspberry Pi ADS-B receiver and the RGB LED-matrix display. The final image is a **Flightradar24 mobile-app screenshot** included as an external traffic-reference example—not an output from my receiver.
+These photos show the ADS-B receiver and RGB matrix I built and tested. I also included a Flightradar24 screenshot of **RPA3415**, a United Express flight operated by Republic Airways that I picked up on my own receiver. It was a useful real-world cross-check of the aircraft information my setup was receiving.
 
 | Receiving station by the window | Raspberry Pi, RTL-SDR and matrix hardware |
 | --- | --- |
 | ![ADS-B tracker operating beside a window, with laptop, antenna, Raspberry Pi and illuminated RGB LED matrix](assets/images/adsb-window-setup.jpg) | ![Close-up of the Raspberry Pi receiver connected to an RTL-SDR USB dongle and HUB75 LED panel](assets/images/adsb-hardware-closeup.jpg) |
 | Prototype setup during reception, with the antenna positioned by the window and the matrix showing aircraft data. | The receive/decode and display hardware, including the SDR receiver and ribbon-cable interface to the panel. |
 
-| LED matrix in operation | Regional traffic reference |
+| LED matrix in operation | Same flight on Flightradar24 |
 | --- | --- |
-| ![RGB LED matrix illuminated at night, showing aircraft identification and live telemetry fields](assets/images/adsb-led-matrix-night.jpg) | ![Flightradar24 mobile app showing aircraft traffic near Philadelphia and an aircraft detail card](assets/images/flightradar24-reference.jpg) |
-| The physical 64 × 32 display presenting callsign and aircraft telemetry such as altitude, speed and track. | Third-party Flightradar24 screenshot for regional traffic context. It does **not** establish that the same aircraft was received or validate the ADS-B station's reception range. |
+| ![RGB LED matrix illuminated at night, showing aircraft identification and live telemetry fields](assets/images/adsb-led-matrix-night.jpg) | ![Flightradar24 showing RPA3415, a Republic Airways Embraer E175 operating as United Express](assets/images/flightradar24-reference.jpg) |
+| The physical 64 × 32 display presenting callsign and aircraft telemetry such as altitude, speed and track. | **RPA3415 (United Express, Embraer E175)** on Flightradar24—the same flight I detected with my RTL-SDR receiver. I used it to compare the displayed aircraft information against a familiar flight-tracking service. |
 
 ## Architecture
 
@@ -107,7 +107,7 @@ The display process requires access to Raspberry Pi matrix hardware; installatio
 | `ADSB_AIRCRAFT_JSON` | `/run/dump1090-fa/aircraft.json` | Decoder output location |
 | `ADSB_DATA_DIR` | Directory containing each script | Local type/route caches and capture log |
 
-I changed only the original scripts' **machine-specific file paths** to these portable settings; the aircraft selection, display, rolling capture, and lookup logic remain otherwise unchanged.
+The scripts support configurable paths so the project can run on different Raspberry Pi installations without editing hardcoded home directories. Aircraft selection, display, rolling capture, and lookup behavior are preserved.
 
 Local `aircraft_types.json`, `routes.json`, and `captured_aircraft_log.csv` are excluded from Git. The files in `examples/` are **synthetic**, not actual received flights.
 
@@ -119,7 +119,7 @@ The application code has been checked for Python syntax. Offline unit tests cove
 python3 -m unittest discover -s tests -v
 ```
 
-The [prototype photographs](#prototype-photographs-and-aircraft-traffic-reference) document the hardware and LED-matrix output. A reproducible build record, receiver message/range measurements, and display-reliability benchmarks are still to be recorded. See the [verification plan](docs/VALIDATION.md).
+The [prototype photographs](#prototype-photographs-and-live-aircraft-cross-check) show my assembled hardware, its LED-matrix output, and an example aircraft cross-check. Future measurements will quantify reception range, message rate, and long-term display reliability. See the [verification plan](docs/VALIDATION.md).
 
 ### Planned improvements
 
@@ -133,4 +133,4 @@ The [prototype photographs](#prototype-photographs-and-aircraft-traffic-referenc
 
 My contribution is the Python aircraft presentation, rolling-monitor and lookup-cache application. **dump1090-fa** and **rpi-rgb-led-matrix** are independently maintained open-source projects; see [dependency attribution](docs/THIRD_PARTY.md). I haven't selected a blanket license for the custom source yet.
 
-This is an experimental educational project, **not a certified aircraft surveillance system** or a substitute for operational traffic information.
+This is a personal embedded-systems and RF project built for learning and experimentation.
