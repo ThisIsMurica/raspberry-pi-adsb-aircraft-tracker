@@ -17,6 +17,20 @@ The project brings together **RF/SDR, Linux, Python, GPIO-driven display hardwar
 
 **Data provenance:** The SDR/dump1090 decoder supplies live broadcast-derived position/altitude/speed-related fields when available. Aircraft-type details and routes are additional **third-party lookups**, not data broadcast as a full flight itinerary by the aircraft.
 
+## Prototype photographs and aircraft-traffic reference
+
+These are photos of my actual Raspberry Pi ADS-B receiver and the RGB LED-matrix display. The final image is a **Flightradar24 mobile-app screenshot** included as an external traffic-reference example—not an output from my receiver.
+
+| Receiving station by the window | Raspberry Pi, RTL-SDR and matrix hardware |
+| --- | --- |
+| ![ADS-B tracker operating beside a window, with laptop, antenna, Raspberry Pi and illuminated RGB LED matrix](assets/images/adsb-window-setup.jpg) | ![Close-up of the Raspberry Pi receiver connected to an RTL-SDR USB dongle and HUB75 LED panel](assets/images/adsb-hardware-closeup.jpg) |
+| Prototype setup during reception, with the antenna positioned by the window and the matrix showing aircraft data. | The receive/decode and display hardware, including the SDR receiver and ribbon-cable interface to the panel. |
+
+| LED matrix in operation | Regional traffic reference |
+| --- | --- |
+| ![RGB LED matrix illuminated at night, showing aircraft identification and live telemetry fields](assets/images/adsb-led-matrix-night.jpg) | ![Flightradar24 mobile app showing aircraft traffic near Philadelphia and an aircraft detail card](assets/images/flightradar24-reference.jpg) |
+| The physical 64 × 32 display presenting callsign and aircraft telemetry such as altitude, speed and track. | Third-party Flightradar24 screenshot for regional traffic context. It does **not** establish that the same aircraft was received or validate the ADS-B station's reception range. |
+
 ## Architecture
 
 ```mermaid
@@ -105,11 +119,11 @@ The application code has been checked for Python syntax. Offline unit tests cove
 python3 -m unittest discover -s tests -v
 ```
 
-A reproducible hardware setup, complete decoder-to-matrix demonstration, RF reception measurements, and display reliability benchmarks have not yet been added to this repository. See the [verification plan](docs/VALIDATION.md).
+The [prototype photographs](#prototype-photographs-and-aircraft-traffic-reference) document the hardware and LED-matrix output. A reproducible build record, receiver message/range measurements, and display-reliability benchmarks are still to be recorded. See the [verification plan](docs/VALIDATION.md).
 
 ### Planned improvements
 
-- Add photos/video of the actual receiver, antenna and LED matrix showing decoded live traffic.
+- Record a short live demonstration video and add measured receiver and display performance.
 - Record Raspberry Pi, RTL-SDR, adapter, Python and library versions.
 - Measure receiver message throughput, matrix loop timing and 24-hour stability.
 - Extract aircraft selection/rendering into pure functions for comprehensive unit tests.
