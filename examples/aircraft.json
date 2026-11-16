@@ -1,0 +1,15 @@
+{
+  "messages": 1250,
+  "aircraft": [
+    {
+      "hex": "ABC123",
+      "flight": "DEMO123",
+      "seen": 1.2,
+      "alt_baro": 12500,
+      "gs": 245.2,
+      "track": 82.4,
+      "messages": 92,
+      "rssi": -18.5
+    }
+  ]
+}

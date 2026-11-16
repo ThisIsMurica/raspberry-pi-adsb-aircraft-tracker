@@ -1,0 +1,22 @@
+# Local aircraft history and ADSBdb caches
+aircraft_types.json
+routes.json
+captured_aircraft_log.csv
+*.csv
+# Python environment
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+# Third-party development checkouts
+dump1090-fa/
+rpi-rgb-led-matrix/
+# Local backups, archives and secrets
+*.zip
+*.bak
+*.bak2
+*_BEFORE_*.py
+*_WORKING_*.py
+.env
+.env.*
+.DS_Store

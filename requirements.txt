@@ -1,0 +1,2 @@
+Pillow
+# Install rpi-rgb-led-matrix Python bindings separately for the Raspberry Pi.
